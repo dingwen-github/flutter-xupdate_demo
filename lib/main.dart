@@ -21,8 +21,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    ///初始化
     initXUpdate();
-    loadJsonFromAsset();
+//    loadJsonFromAsset();
   }
 
   Future<void> loadJsonFromAsset() async {
@@ -60,19 +61,19 @@ class _MyAppState extends State<MyApp> {
         print(error);
       });
 
-//      FlutterXUpdate.setErrorHandler(
-//          onUpdateError: (Map<String, dynamic> message) async {
-//        print(message);
-//        //下载失败
-//        if (message["code"] == 4000) {
-//          FlutterXUpdate.showRetryUpdateTipDialog(
-//              retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
-//              retryUrl: "https://www.pgyer.com/flutter_learn");
-//        }
-//        setState(() {
-//          _message = "$message";
-//        });
-//      });
+      FlutterXUpdate.setErrorHandler(
+          onUpdateError: (Map<String, dynamic> message) async {
+        print(message);
+        //下载失败
+        if (message["code"] == 4000) {
+          FlutterXUpdate.showRetryUpdateTipDialog(
+              retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
+              retryUrl: "https://www.pgyer.com/flutter_learn");
+        }
+        setState(() {
+          _message = "$message";
+        });
+      });
 
 //      FlutterXUpdate.setCustomParseHandler(onUpdateParse: (String json) async {
 //        //这里是自定义json解析
@@ -301,6 +302,6 @@ class _MyAppState extends State<MyApp> {
     FlutterXUpdate.checkUpdate(
         url: _updateUrl,
         themeColor: '#FFFFAC5D',
-        topImageRes: 'bg_update_top');
+    topImageRes: 'dinwen');
   }
 }
