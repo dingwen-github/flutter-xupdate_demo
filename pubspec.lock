@@ -80,7 +80,7 @@ packages:
       name: flutter_xupdate
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.4"
+    version: "0.0.3"
   image:
     dependency: transitive
     description:
@@ -102,13 +102,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.8"
-  package_info:
-    dependency: transitive
-    description:
-      name: package_info
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.4.3"
   path:
     dependency: transitive
     description:
@@ -207,4 +200,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">=2.4.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.5 <2.0.0"
+  flutter: ">=1.10.0 <2.0.0"

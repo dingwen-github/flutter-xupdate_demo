@@ -21,13 +21,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     ///初始化
     initXUpdate();
-//    loadJsonFromAsset();
+   // loadJsonFromAsset();
   }
 
   Future<void> loadJsonFromAsset() async {
-    _customJson = await rootBundle.loadString('assets/update_custom.json');
+    _customJson = await rootBundle.loadString('assets/update_test.json');
   }
 
   ///初始化
@@ -35,26 +36,26 @@ class _MyAppState extends State<MyApp> {
     if (Platform.isAndroid) {
       FlutterXUpdate.init(
 
-              ///是否输出日志
-              debug: true,
+        ///是否输出日志
+          debug: true,
 
-              ///是否使用post请求
-              isPost: false,
+          ///是否使用post请求
+          isPost: false,
 
-              ///post请求是否是上传json
-              isPostJson: false,
+          ///post请求是否是上传json
+          isPostJson: false,
 
-              ///是否开启自动模式
-              isWifiOnly: false,
+          ///是否开启自动模式
+          isWifiOnly: false,
 
-              ///是否开启自动模式
-              isAutoMode: false,
+          ///是否开启自动模式
+          isAutoMode: false,
 
-              ///需要设置的公共参数
-              supportSilentInstall: false,
+          ///需要设置的公共参数
+          supportSilentInstall: false,
 
-              ///在下载过程中，如果点击了取消的话，是否弹出切换下载方式的重试提示弹窗
-              enableRetry: false)
+          ///在下载过程中，如果点击了取消的话，是否弹出切换下载方式的重试提示弹窗
+          enableRetry: false)
           .then((value) {
         updateMessage("初始化成功: $value");
       }).catchError((error) {
@@ -63,17 +64,17 @@ class _MyAppState extends State<MyApp> {
 
       FlutterXUpdate.setErrorHandler(
           onUpdateError: (Map<String, dynamic> message) async {
-        print(message);
-        //下载失败
-        if (message["code"] == 4000) {
-          FlutterXUpdate.showRetryUpdateTipDialog(
-              retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
-              retryUrl: "https://www.pgyer.com/flutter_learn");
-        }
-        setState(() {
-          _message = "$message";
-        });
-      });
+            print(message);
+            //下载失败
+            if (message["code"] == 4000) {
+              FlutterXUpdate.showRetryUpdateTipDialog(
+                  retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
+                  retryUrl: "https://www.pgyer.com/flutter_learn");
+            }
+            setState(() {
+              _message = "$message";
+            });
+          });
 
 //      FlutterXUpdate.setCustomParseHandler(onUpdateParse: (String json) async {
 //        //这里是自定义json解析
@@ -82,17 +83,21 @@ class _MyAppState extends State<MyApp> {
 
       FlutterXUpdate.setUpdateHandler(
           onUpdateError: (Map<String, dynamic> message) async {
-        print(message);
-        //下载失败
-        if (message["code"] == 4000) {
-          FlutterXUpdate.showRetryUpdateTipDialog(
-              retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
-              retryUrl: "https://www.pgyer.com/flutter_learn");
+            print(message);
+            //下载失败
+            if (message["code"] == 4000) {
+              FlutterXUpdate.showRetryUpdateTipDialog(
+                  retryContent: "Github被墙无法继续下载，是否考虑切换蒲公英下载？",
+                  retryUrl: "https://www.pgyer.com/flutter_learn");
+            }
+
+            if(message["code"] == 2004) {
+              print('2004');
         }
-        setState(() {
-          _message = "$message";
-        });
-      }, onUpdateParse: (String json) async {
+            setState(() {
+              _message = "$message";
+            });
+          }, onUpdateParse: (String json) async {
         //这里是自定义json解析
         return customParseJson(json);
       });
@@ -143,7 +148,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 autoFitWidget(ButtonBar(
                   alignment:
-                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -160,7 +165,7 @@ class _MyAppState extends State<MyApp> {
                 )),
                 autoFitWidget(ButtonBar(
                   alignment:
-                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -182,7 +187,7 @@ class _MyAppState extends State<MyApp> {
                 )),
                 autoFitWidget(ButtonBar(
                   alignment:
-                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -199,7 +204,7 @@ class _MyAppState extends State<MyApp> {
                 )),
                 autoFitWidget(ButtonBar(
                   alignment:
-                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -216,7 +221,7 @@ class _MyAppState extends State<MyApp> {
                 )),
                 autoFitWidget(ButtonBar(
                   alignment:
-                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -237,7 +242,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   String _updateUrl =
-      "https://gitee.com/xuexiangjys/XUpdate/raw/master/jsonapi/update_test.json";
+      // "https://gitee.com/xuexiangjys/XUpdate/raw/master/jsonapi/update_test.json";
+      "http://192.168.0.122:8081/update_test.json";
 
   String _updateUrl2 =
       "https://gitee.com/xuexiangjys/XUpdate/raw/master/jsonapi/update_forced.json";
@@ -302,6 +308,6 @@ class _MyAppState extends State<MyApp> {
     FlutterXUpdate.checkUpdate(
         url: _updateUrl,
         themeColor: '#FFFFAC5D',
-    topImageRes: 'dinwen');
+        topImageRes: 'dinwen');
   }
 }
